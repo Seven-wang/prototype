@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="full-screen" content="yes"/>
+    <meta name="browsermode" content="application"/>
+	<title>prototype</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        function Parent(){
+            this.name = 'mike';
+        }
+
+        function Child(){
+            this.age = 12;
+        }
+        Child.prototype = new Parent();//Child继承Parent，通过原型，形成链条
+
+        var test = new Child();
+        console.log(test.age);
+        console.log(test.name);//得到被继承的属性
+        //继续原型链继承
+        function Brother(){   //brother构造
+            this.weight = 60;
+        }
+        Brother.prototype = new Child();//继续原型链继承
+        var brother = new Brother();
+        console.log(brother.name);//继承了Parent和Child,弹出mike
+        console.log(brother.age);//弹出12
+
+        console.log(brother instanceof Object)//true
+        console.log(test instanceof Brother);//false,test 是brother的超类
+        console.log(brother instanceof Child);//true
+        console.log(brother instanceof Parent);//true
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="full-screen" content="yes"/>
+    <meta name="browsermode" content="application"/>
+	<title>prototype</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 定义一个全局函数
+        function foo() {
+            console.log(this.fruit);
+        }
+        
+        // 定义一个全局变量
+        var fruit = "apple";
+        // 自定义一个对象
+        var pack = {
+            fruit: "orange"
+        };
+        
+        // 等价于window.foo();
+        foo.apply(window);  // "apple",此时this等于window
+        // 此时foo中的this === pack
+        foo.apply(pack);    // "orange"
+    </script>
+</body>
+</html>
